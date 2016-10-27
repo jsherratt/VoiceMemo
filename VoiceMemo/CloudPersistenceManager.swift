@@ -14,7 +14,7 @@ enum PersistenceError: MemoErrorType {
     case SaveFailed(description: String)
     case InsufficientInformation
     case InvalidData
-    case QueryFailed(description: String, userInfo: [NSObject: Any])
+    case QueryFailed(description: String)
     
     var description: String {
         
@@ -22,9 +22,7 @@ enum PersistenceError: MemoErrorType {
             
         case .SaveFailed(let description): return "Save Failed: \(description)"
             
-        case .QueryFailed(let description, let userInfo):
-            
-            return "Query Failed. Description: \(description), userInfo: \(userInfo.description)"
+        case .QueryFailed(let description): return "Query Failed. Description: \(description))"
             
         default: return String(describing: self)
             
@@ -76,9 +74,9 @@ class CloudPersistenceManager {
             
             guard let records = records else {
                 
-                if let error = error as? NSError {
+                if let error = error {
                     
-                    let persistenceError = PersistenceError.QueryFailed(description: error.localizedDescription, userInfo: error.userInfo as [NSObject : Any])
+                    let persistenceError = PersistenceError.QueryFailed(description: error.localizedDescription)
                     
                     completion(.Failure(persistenceError))
                     
@@ -102,9 +100,9 @@ class CloudPersistenceManager {
             
             guard let record = record else {
                 
-                if let error = error as? NSError {
+                if let error = error {
                     
-                    let persistenceError = PersistenceError.QueryFailed(description: error.localizedDescription, userInfo: error.userInfo as [NSObject : Any])
+                    let persistenceError = PersistenceError.QueryFailed(description: error.localizedDescription)
                     completion(.Failure(persistenceError))
                     
                 }else {

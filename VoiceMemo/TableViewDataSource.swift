@@ -11,8 +11,8 @@ import UIKit
 
 class TableViewDataSource: NSObject, UITableViewDataSource {
     
-    let tableView: UITableView
-    var results: [Memo]
+    fileprivate let tableView: UITableView
+    fileprivate var results: [Memo]
     
     init(tableView: UITableView, results: [Memo]) {
         

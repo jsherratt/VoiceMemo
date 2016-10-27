@@ -144,12 +144,12 @@ class ViewController: UIViewController {
         stopButton.isHidden = flag
     }
     
-    private func saveMemo(memo: Memo) {
+    fileprivate func saveMemo(memo: Memo) {
         
         dataProvider.save(memo: memo)
     }
     
-    private func presentSaveMemoAlertController(completion: @escaping (String) -> Void) {
+    fileprivate func presentSaveMemoAlertController(completion: @escaping (String) -> Void) {
         let alertController = UIAlertController(title: "Save Memo", message: nil, preferredStyle: .alert)
         
         alertController.addTextField { textField in

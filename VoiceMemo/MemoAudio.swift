@@ -19,17 +19,15 @@ class MemoSessionManager {
         return session.recordPermission() == .granted
     }
     
-    private init() {
+    fileprivate init() {
     
         session = AVAudioSession.sharedInstance()
         configureSession()
-    
     }
     
-    private func configureSession() {
+    fileprivate func configureSession() {
         
         do {
-            
             try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try session.setActive(true)
             
@@ -52,9 +50,9 @@ class MemoRecorder {
     
     static let sharedInstance = MemoRecorder()
     
-    private let recorder: AVAudioRecorder
+    fileprivate let recorder: AVAudioRecorder
     
-    private static let settings: [String:Any] = [
+    fileprivate static let settings: [String:Any] = [
         AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
         AVSampleRateKey: 22050.0,
         AVEncoderBitDepthHintKey: 16 as NSNumber,
@@ -62,7 +60,7 @@ class MemoRecorder {
         AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
     
-    private static func outputUrl() -> URL {
+    fileprivate static func outputUrl() -> URL {
         
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         
@@ -73,7 +71,7 @@ class MemoRecorder {
         return URL(string: audioPath)!
     }
     
-    private init() {
+    fileprivate init() {
         
         self.recorder = try! AVAudioRecorder(url: MemoRecorder.outputUrl(), settings: MemoRecorder.settings)
         
