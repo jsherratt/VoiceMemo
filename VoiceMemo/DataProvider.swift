@@ -25,7 +25,7 @@ class DataProvider {
     let manager = CloudPersistenceManager()
     var updates = [DataProviderUpdate<Memo>]()
     
-    private weak var delegate: DataProviderDelegate?
+    fileprivate weak var delegate: DataProviderDelegate?
     
     init(delegate: DataProviderDelegate?) {
         
@@ -56,7 +56,7 @@ class DataProvider {
         }
     }
     
-    private func processResult(result: Result<[Memo]>) {
+    fileprivate func processResult(result: Result<[Memo]>) {
         
         DispatchQueue.main.async {
             
@@ -73,7 +73,7 @@ class DataProvider {
         }
     }
     
-    private func processResult(result: Result<Memo>) {
+    fileprivate func processResult(result: Result<Memo>) {
         
         DispatchQueue.main.async {
             
